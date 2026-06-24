@@ -118,6 +118,12 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     opacity: 0.08;
     animation: floatShape 20s infinite ease-in-out;
 }
+.shape svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    display: block;
+}
 .shape-1 { top: 10%; left: 8%; color: var(--red); animation-delay: 0s; font-size: 64px; }
 .shape-2 { top: 25%; right: 12%; color: var(--blue); animation-delay: -3s; font-size: 52px; }
 .shape-3 { bottom: 30%; left: 15%; color: var(--yellow); animation-delay: -7s; font-size: 72px; }
@@ -539,14 +545,21 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
 .lb-item:nth-child(n+4) { animation-delay: calc(0.1s * var(--i)); }
 .lb-position {
     font-family: 'Outfit', sans-serif;
-    font-size: 28px;
+    font-size: 16px;
     font-weight: 900;
-    min-width: 48px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-strong);
+    border: 1.5px solid var(--glass-border);
     text-align: center;
 }
-.lb-item:nth-child(1) .lb-position { color: var(--gold); }
-.lb-item:nth-child(2) .lb-position { color: var(--silver); }
-.lb-item:nth-child(3) .lb-position { color: var(--bronze); }
+.lb-item:nth-child(1) .lb-position { background: var(--gold); color: #1a0533; border-color: #ffd700; box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+.lb-item:nth-child(2) .lb-position { background: var(--silver); color: #1a0533; border-color: #c0c0c0; }
+.lb-item:nth-child(3) .lb-position { background: var(--bronze); color: #1a0533; border-color: #cd7f32; }
 .lb-medal { font-size: 28px; }
 .lb-name {
     flex: 1;
@@ -599,14 +612,18 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
 .podium-item:nth-child(2) { animation-delay: 0.3s; order: -1; }
 .podium-item:nth-child(3) { animation-delay: 0.7s; }
 .podium-avatar {
-    font-size: 36px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
     width: 60px; height: 60px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     background: var(--glass-strong);
     border: 2px solid var(--glass-border);
 }
-.podium-item:nth-child(2) .podium-avatar { font-size: 44px; width: 72px; height: 72px; border-color: var(--gold); box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+.podium-item:nth-child(1) .podium-avatar { background: var(--silver); color: #1a0533; border-color: var(--silver); }
+.podium-item:nth-child(2) .podium-avatar { font-size: 26px; width: 72px; height: 72px; background: var(--gold); color: #1a0533; border-color: var(--gold); box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+.podium-item:nth-child(3) .podium-avatar { background: var(--bronze); color: #1a0533; border-color: var(--bronze); }
 .podium-name {
     font-family: 'Outfit', sans-serif;
     font-size: 14px;
@@ -1087,6 +1104,78 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
 }
 
 /* ============================================
+   SVG PREMIUM ICONS
+   ============================================ */
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+    display: inline-block;
+}
+.icon-svg-sm {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+    display: inline-block;
+}
+.icon-svg-xs {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+    display: inline-block;
+}
+.icon-svg-lg {
+    width: 48px;
+    height: 48px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+    display: inline-block;
+}
+.icon-svg-xl {
+    width: 72px;
+    height: 72px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+    display: inline-block;
+}
+.logo-icon .icon-svg-xl {
+    color: var(--gold);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+}
+.btn-icon .icon-svg-lg {
+    color: white;
+}
+.check-icon-svg {
+    stroke: var(--correct);
+}
+.cross-icon-svg {
+    stroke: var(--wrong);
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 600px) {
@@ -1114,14 +1203,16 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
 <body>
 <div id="app">
     <!-- Mute Button -->
-    <button id="mute-btn" onclick="toggleMute()" title="Mute / Unmute">🔊</button>
+    <button id="mute-btn" onclick="toggleMute()" title="Mute / Unmute">
+        <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+    </button>
 
     <!-- ============================== -->
     <!-- SCREEN: FIREBASE SETUP NEEDED  -->
     <!-- ============================== -->
     <div id="screen-setup" class="screen">
         <div class="setup-card">
-            <h1>⚙️ Setup Firebase Diperlukan</h1>
+            <h1><svg class="icon-svg" style="margin-right: 8px; width: 28px; height: 28px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Setup Firebase Diperlukan</h1>
             <p>Untuk menggunakan aplikasi ini, Anda perlu mengonfigurasi Firebase Realtime Database terlebih dahulu.</p>
             <ol>
                 <li>Buka <strong>console.firebase.google.com</strong></li>
@@ -1140,29 +1231,35 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-landing" class="screen">
         <div class="floating-shapes">
-            <div class="shape shape-1">▲</div>
-            <div class="shape shape-2">◆</div>
-            <div class="shape shape-3">●</div>
-            <div class="shape shape-4">■</div>
-            <div class="shape shape-5">▲</div>
-            <div class="shape shape-6">◆</div>
-            <div class="shape shape-7">●</div>
-            <div class="shape shape-8">■</div>
+            <div class="shape shape-1"><svg viewBox="0 0 24 24"><polygon points="12 3 22 21 2 21"></polygon></svg></div>
+            <div class="shape shape-2"><svg viewBox="0 0 24 24"><polygon points="12 2 22 12 12 22 2 12"></polygon></svg></div>
+            <div class="shape shape-3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle></svg></div>
+            <div class="shape shape-4"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg></div>
+            <div class="shape shape-5"><svg viewBox="0 0 24 24"><polygon points="12 3 22 21 2 21"></polygon></svg></div>
+            <div class="shape shape-6"><svg viewBox="0 0 24 24"><polygon points="12 2 22 12 12 22 2 12"></polygon></svg></div>
+            <div class="shape shape-7"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle></svg></div>
+            <div class="shape shape-8"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg></div>
         </div>
         <div class="landing-content">
             <div class="logo-container">
-                <div class="logo-icon">🧠</div>
+                <div class="logo-icon">
+                    <svg class="icon-svg-xl" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2z"></path></svg>
+                </div>
                 <h1 class="logo-text">QuizBattle</h1>
                 <p class="tagline">Kuis Interaktif Real-Time v1.2</p>
             </div>
             <div class="landing-buttons">
                 <button class="btn-host" id="btn-create-host" onclick="initHost()">
-                    <span class="btn-icon">🎯</span>
+                    <span class="btn-icon">
+                        <svg class="icon-svg-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    </span>
                     <span class="btn-label">Buat Kuis</span>
                     <span class="btn-sub">Menjadi Host</span>
                 </button>
                 <button class="btn-join" id="btn-goto-join" onclick="showScreen('screen-join')">
-                    <span class="btn-icon">🎮</span>
+                    <span class="btn-icon">
+                        <svg class="icon-svg-lg" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line></svg>
+                    </span>
                     <span class="btn-label">Gabung Kuis</span>
                     <span class="btn-sub">Menjadi Peserta</span>
                 </button>
@@ -1175,21 +1272,21 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-host-lobby" class="screen">
         <div class="lobby-header">
-            <h2>🎉 Menunggu Peserta...</h2>
+            <h2>Menunggu Peserta...</h2>
         </div>
         <div class="session-code-container">
             <p class="code-label">Kode Sesi</p>
             <div id="session-code" class="session-code">------</div>
-            <button class="btn-copy" id="btn-copy-code" onclick="copyCode()">📋 Salin Kode</button>
+            <button class="btn-copy" id="btn-copy-code" onclick="copyCode()"><svg class="icon-svg-sm" style="margin-right: 6px;" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Salin Kode</button>
         </div>
         <div class="participants-area">
             <div class="participants-header">
-                <span>👥 Peserta</span>
+                <span><svg class="icon-svg-sm" style="margin-right: 8px;" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Peserta</span>
                 <span id="participant-count" class="participant-badge">0 / 50</span>
             </div>
             <div id="participant-list" class="participant-list"></div>
         </div>
-        <button id="btn-start-quiz" class="btn-start" onclick="hostStartQuiz()" disabled>▶ Mulai Kuis</button>
+        <button id="btn-start-quiz" class="btn-start" onclick="hostStartQuiz()" disabled><svg class="icon-svg" style="margin-right: 8px; fill: currentColor;" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>Mulai Kuis</button>
     </div>
 
     <!-- ============================== -->
@@ -1205,7 +1302,7 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
                 </svg>
                 <span id="timer-text" class="timer-text">20</span>
             </div>
-            <div class="hq-answer-count" id="hq-answer-count">0 / 0 ✓</div>
+            <div class="hq-answer-count" id="hq-answer-count">0 / 0 Menjawab</div>
         </div>
         <div class="hq-question-box">
             <p id="hq-question-text" class="hq-question-text"></p>
@@ -1223,20 +1320,23 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-host-review" class="screen">
         <div class="review-header">
-            <h2 id="review-question-num">📊 Soal 1 / 10</h2>
+            <h2 class="screen-title-flex">
+                <svg class="icon-svg" style="margin-right: 8px;" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span id="review-question-num">Soal 1 / 10</span>
+            </h2>
         </div>
         <div class="review-question" id="review-question-text"></div>
         <div class="review-answers" id="review-answers"></div>
-        <button class="btn-next" id="btn-show-leaderboard" onclick="hostShowLeaderboard()">🏆 Lihat Leaderboard</button>
+        <button class="btn-next" id="btn-show-leaderboard" onclick="hostShowLeaderboard()"><svg class="icon-svg-sm" style="margin-right: 8px;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"></path></svg>Lihat Leaderboard</button>
     </div>
 
     <!-- ============================== -->
     <!-- SCREEN: HOST LEADERBOARD       -->
     <!-- ============================== -->
     <div id="screen-host-leaderboard" class="screen">
-        <h2 class="lb-title">🏆 Leaderboard</h2>
+        <h2 class="lb-title"><svg class="icon-svg" style="margin-right: 8px; color: var(--gold);" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"></path></svg>Leaderboard</h2>
         <div id="leaderboard-list" class="leaderboard-list"></div>
-        <button id="btn-next-question" class="btn-next" onclick="hostNextQuestion()">➡️ Soal Berikutnya</button>
+        <button id="btn-next-question" class="btn-next" onclick="hostNextQuestion()">Soal Berikutnya<svg class="icon-svg-sm" style="margin-left: 8px;" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
     </div>
 
     <!-- ============================== -->
@@ -1244,12 +1344,12 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-host-final" class="screen">
         <div class="confetti-container" id="confetti-host"></div>
-        <h2 class="final-title">🎉 Hasil Akhir</h2>
+        <h2 class="final-title"><svg class="icon-svg" style="margin-right: 8px; color: var(--gold); width: 28px; height: 28px;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"></path></svg>Hasil Akhir</h2>
         <div class="podium" id="podium"></div>
         <div class="final-leaderboard" id="final-leaderboard"></div>
         <div class="final-actions">
-            <button class="btn-copy-csv" id="btn-copy-csv" onclick="copyResultsToClipboard()">📋 Salin Hasil Penilaian (Excel)</button>
-            <button class="btn-home" id="btn-home-host" onclick="goHome()">🏠 Kembali ke Beranda</button>
+            <button class="btn-copy-csv" id="btn-copy-csv" onclick="copyResultsToClipboard()"><svg class="icon-svg-sm" style="margin-right: 8px;" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span id="btn-copy-text">Salin Hasil Penilaian (Excel)</span></button>
+            <button class="btn-home" id="btn-home-host" onclick="goHome()"><svg class="icon-svg-sm" style="margin-right: 8px;" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Kembali ke Beranda</button>
         </div>
     </div>
 
@@ -1258,7 +1358,7 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-join" class="screen">
         <div class="join-card">
-            <h2>🎮 Gabung Kuis</h2>
+            <h2><svg class="icon-svg" style="margin-right: 8px; width: 28px; height: 28px;" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line></svg>Gabung Kuis</h2>
             <div class="input-group">
                 <label for="input-code">Kode Sesi</label>
                 <input type="text" id="input-code" placeholder="ABCDEF" maxlength="6" autocomplete="off">
@@ -1267,9 +1367,9 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
                 <label for="input-name">Nama Kamu</label>
                 <input type="text" id="input-name" placeholder="Masukkan nama" maxlength="20" autocomplete="off">
             </div>
-            <button class="btn-join-submit" id="btn-join-submit" onclick="participantJoin()">🚀 Gabung!</button>
+            <button class="btn-join-submit" id="btn-join-submit" onclick="participantJoin()"><svg class="icon-svg" style="margin-right: 8px; fill: none;" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>Gabung!</button>
             <p id="join-error" class="error-text"></p>
-            <button class="btn-back" onclick="showScreen('screen-landing')">← Kembali</button>
+            <button class="btn-back" onclick="showScreen('screen-landing')"><svg class="icon-svg-xs" style="margin-right: 4px;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Kembali</button>
         </div>
     </div>
 
@@ -1278,11 +1378,11 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-waiting" class="screen">
         <div class="waiting-content">
-            <div class="waiting-avatar">🎮</div>
+            <div class="waiting-avatar"><svg class="icon-svg-xl" style="animation: bounce 1s infinite;" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line></svg></div>
             <h2 id="waiting-name">Nama</h2>
             <p class="waiting-text">Menunggu host memulai kuis...</p>
             <div class="waiting-dots"><span></span><span></span><span></span></div>
-            <button class="btn-back" style="margin-top: 30px; font-size: 15px;" onclick="goHome()">← Keluar</button>
+            <button class="btn-back" style="margin-top: 30px; font-size: 15px;" onclick="goHome()"><svg class="icon-svg-xs" style="margin-right: 4px;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Keluar</button>
         </div>
     </div>
 
@@ -1316,7 +1416,7 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-participant-feedback" class="screen">
         <div class="feedback-content" id="feedback-content">
-            <div class="feedback-icon" id="feedback-icon">✅</div>
+            <div class="feedback-icon" id="feedback-icon"></div>
             <h2 id="feedback-text">Benar!</h2>
             <p class="feedback-score" id="feedback-score">+750 poin</p>
             <p class="feedback-total" id="feedback-total">Total: 750 poin</p>
@@ -1328,7 +1428,7 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <!-- ============================== -->
     <div id="screen-participant-ranking" class="screen">
         <div class="ranking-content">
-            <h2>🏆 Posisi Kamu</h2>
+            <h2><svg class="icon-svg" style="margin-right: 8px; color: var(--gold);" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"></path></svg>Posisi Kamu</h2>
             <div class="ranking-position" id="my-rank">#1</div>
             <div class="ranking-score" id="my-total-score">0 poin</div>
             <p class="ranking-wait">Menunggu soal berikutnya...</p>
@@ -1341,11 +1441,11 @@ h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 800; }
     <div id="screen-participant-final" class="screen">
         <div class="confetti-container" id="confetti-participant"></div>
         <div class="pfinal-content">
-            <h2>🎉 Kuis Selesai!</h2>
+            <h2>Kuis Selesai!</h2>
             <div class="pfinal-rank" id="pfinal-rank">#1</div>
             <div class="pfinal-score" id="pfinal-score">0 poin</div>
             <p class="pfinal-message" id="pfinal-message"></p>
-            <button class="btn-home" onclick="goHome()">🏠 Kembali</button>
+            <button class="btn-home" onclick="goHome()"><svg class="icon-svg-sm" style="margin-right: 8px;" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Kembali</button>
         </div>
     </div>
 </div>
@@ -1765,9 +1865,12 @@ function copyCode() {
     const code = state.sessionCode;
     navigator.clipboard.writeText(code).then(() => {
         const btn = document.getElementById('btn-copy-code');
-        btn.textContent = '✅ Tersalin!';
+        btn.innerHTML = '<svg class="icon-svg-sm" style="margin-right: 6px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>Tersalin!';
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = '📋 Salin Kode'; btn.classList.remove('copied'); }, 2000);
+        setTimeout(() => {
+            btn.innerHTML = '<svg class="icon-svg-sm" style="margin-right: 6px;" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Salin Kode';
+            btn.classList.remove('copied');
+        }, 2000);
     }).catch(() => {
         // Fallback
         prompt('Salin kode ini:', code);
@@ -1777,7 +1880,12 @@ function copyCode() {
 function toggleMute() {
     audio.init();
     const isMuted = audio.toggleMute();
-    document.getElementById('mute-btn').textContent = isMuted ? '🔇' : '🔊';
+    const muteBtn = document.getElementById('mute-btn');
+    if (isMuted) {
+        muteBtn.innerHTML = '<svg class="icon-svg" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+    } else {
+        muteBtn.innerHTML = '<svg class="icon-svg" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+    }
 }
 
 function cleanupListeners() {
@@ -1925,7 +2033,7 @@ async function hostStartQuestion(qIndex) {
     for (let i = 0; i < 4; i++) {
         document.getElementById(`hq-ans-${i}`).textContent = q.answers[i];
     }
-    document.getElementById('hq-answer-count').textContent = `0 / ${state.totalParticipants} ✓`;
+    document.getElementById('hq-answer-count').textContent = `0 / ${state.totalParticipants} Menjawab`;
 
     showScreen('screen-host-question');
 
@@ -1941,7 +2049,7 @@ async function hostStartQuestion(qIndex) {
         const answers = snap.val() || {};
         state.currentAnswers = answers;
         const count = Object.keys(answers).length;
-        document.getElementById('hq-answer-count').textContent = `${count} / ${state.totalParticipants} ✓`;
+        document.getElementById('hq-answer-count').textContent = `${count} / ${state.totalParticipants} Menjawab`;
 
         // If all answered, end timer early
         if (count >= state.totalParticipants && state.totalParticipants > 0 && state.timeLeft > 0) {
@@ -2000,7 +2108,7 @@ async function hostTimerEnd() {
 
 function showHostReview() {
     const q = QUESTIONS[state.currentQuestion];
-    document.getElementById('review-question-num').textContent = `📊 Soal ${state.currentQuestion + 1} / ${QUESTIONS.length}`;
+    document.getElementById('review-question-num').textContent = `Soal ${state.currentQuestion + 1} / ${QUESTIONS.length}`;
     document.getElementById('review-question-text').textContent = q.question;
 
     // Count answers per option
@@ -2020,7 +2128,7 @@ function showHostReview() {
         bar.innerHTML = `
             <span class="review-bar-shape">${SHAPES[i]}</span>
             <span class="review-bar-text">${q.answers[i]}</span>
-            ${isCorrect ? '<span class="check-icon">✅</span>' : ''}
+            ${isCorrect ? '<span class="check-icon"><svg class="icon-svg-xs" style="stroke: var(--correct); stroke-width: 3;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>' : ''}
             <span class="review-bar-count">${counts[i]}</span>
         `;
         bar.style.animationDelay = `${i * 0.1}s`;
@@ -2044,10 +2152,10 @@ async function hostShowLeaderboard() {
     // Change button text for last question
     const btn = document.getElementById('btn-next-question');
     if (state.currentQuestion >= QUESTIONS.length - 1) {
-        btn.textContent = '🏆 Lihat Hasil Akhir';
+        btn.innerHTML = 'Lihat Hasil Akhir<svg class="icon-svg-sm" style="margin-left: 8px;" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"></path><path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"></path></svg>';
         btn.onclick = () => hostEndQuiz();
     } else {
-        btn.textContent = '➡️ Soal Berikutnya';
+        btn.innerHTML = 'Soal Berikutnya<svg class="icon-svg-sm" style="margin-left: 8px;" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
         btn.onclick = () => hostNextQuestion();
     }
 
@@ -2066,13 +2174,12 @@ function renderHostLeaderboard(leaderboard) {
     const container = document.getElementById('leaderboard-list');
     container.innerHTML = '';
     const top = leaderboard.slice(0, 5);
-    const medals = ['🥇', '🥈', '🥉', '', ''];
     top.forEach((entry, i) => {
         const item = document.createElement('div');
         item.className = 'lb-item';
         item.style.setProperty('--i', i + 1);
         item.innerHTML = `
-            <span class="lb-position">${medals[i] || (i + 1)}</span>
+            <span class="lb-position">${i + 1}</span>
             <span class="lb-name">${entry.name}</span>
             <span class="lb-score">${entry.score.toLocaleString()}</span>
         `;
@@ -2166,10 +2273,10 @@ function copyResultsToClipboard() {
     const tsv = generateCSVData('\t');
     
     navigator.clipboard.writeText(tsv).then(() => {
-        const btn = document.getElementById('btn-copy-csv');
-        btn.textContent = '📋 Berhasil Disalin!';
+        const btnText = document.getElementById('btn-copy-text');
+        btnText.textContent = 'Berhasil Disalin!';
         setTimeout(() => {
-            btn.textContent = '📋 Salin Data (Excel)';
+            btnText.textContent = 'Salin Hasil Penilaian (Excel)';
         }, 3000);
     }).catch(err => {
         console.error('Failed to copy using clipboard API: ', err);
@@ -2181,10 +2288,10 @@ function copyResultsToClipboard() {
         textarea.select();
         try {
             document.execCommand('copy');
-            const btn = document.getElementById('btn-copy-csv');
-            btn.textContent = '📋 Berhasil Disalin!';
+            const btnText = document.getElementById('btn-copy-text');
+            btnText.textContent = 'Berhasil Disalin!';
             setTimeout(() => {
-                btn.textContent = '📋 Salin Data (Excel)';
+                btnText.textContent = 'Salin Hasil Penilaian (Excel)';
             }, 3000);
         } catch (e) {
             alert('Gagal menyalin data secara otomatis. Silakan salin manual dari kotak teks.');
@@ -2198,7 +2305,7 @@ function renderFinalResults(leaderboard) {
     const podium = document.getElementById('podium');
     podium.innerHTML = '';
     const podiumData = leaderboard.slice(0, 3);
-    const podiumLabels = ['🥈', '🥇', '🥉'];
+    const podiumLabels = ['2', '1', '3'];
     const podiumOrder = [1, 0, 2]; // Display order: 2nd, 1st, 3rd
 
     podiumOrder.forEach(rank => {
@@ -2247,31 +2354,31 @@ async function participantJoin() {
     errorEl.textContent = '';
 
     if (!code || code.length < 4) {
-        errorEl.textContent = '❌ Masukkan kode sesi yang valid';
+        errorEl.textContent = 'Masukkan kode sesi yang valid';
         return;
     }
     if (!name) {
-        errorEl.textContent = '❌ Masukkan nama kamu';
+        errorEl.textContent = 'Masukkan nama kamu';
         return;
     }
 
     // Check if session exists
     const sessionSnap = await db.ref(`sessions/${code}`).once('value');
     if (!sessionSnap.exists()) {
-        errorEl.textContent = '❌ Sesi tidak ditemukan. Periksa kode kamu.';
+        errorEl.textContent = 'Sesi tidak ditemukan. Periksa kode kamu.';
         return;
     }
 
     const sessionData = sessionSnap.val();
     if (sessionData.status !== 'lobby') {
-        errorEl.textContent = '❌ Kuis sudah dimulai. Tidak bisa bergabung.';
+        errorEl.textContent = 'Kuis sudah dimulai. Tidak bisa bergabung.';
         return;
     }
 
     // Check participant count
     const participants = sessionData.participants || {};
     if (Object.keys(participants).length >= MAX_PARTICIPANTS) {
-        errorEl.textContent = `❌ Sesi penuh (maks ${MAX_PARTICIPANTS} peserta)`;
+        errorEl.textContent = `Sesi penuh (maks ${MAX_PARTICIPANTS} peserta)`;
         return;
     }
 
@@ -2459,7 +2566,7 @@ async function submitAnswer(answerIndex) {
     // Show waiting message
     const msg = document.createElement('div');
     msg.className = 'pq-waiting-msg';
-    msg.textContent = '⏳ Jawaban terkirim! Menunggu...';
+    msg.innerHTML = '<svg class="icon-svg-xs" style="margin-right: 6px; stroke: var(--correct);" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>Jawaban terkirim! Menunggu...';
     document.getElementById('screen-participant-question').appendChild(msg);
 
     // Write answer to Firebase
@@ -2495,21 +2602,21 @@ function showParticipantFeedback(data) {
     if (!state.hasAnswered) {
         // Didn't answer in time
         feedbackContent.className = 'feedback-content wrong';
-        feedbackIcon.textContent = '⏰';
+        feedbackIcon.innerHTML = '<svg class="icon-svg-xl cross-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>';
         feedbackText.textContent = 'Waktu Habis!';
         feedbackScore.textContent = '+0 poin';
         feedbackScore.style.color = 'var(--wrong)';
         audio.wrong();
     } else if (state.selectedAnswer === q.correct) {
         feedbackContent.className = 'feedback-content correct';
-        feedbackIcon.textContent = '🎉';
+        feedbackIcon.innerHTML = '<svg class="icon-svg-xl check-icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
         feedbackText.textContent = 'Benar!';
         feedbackScore.textContent = `+${state.lastScore} poin`;
         feedbackScore.style.color = 'var(--gold)';
         audio.correct();
     } else {
         feedbackContent.className = 'feedback-content wrong';
-        feedbackIcon.textContent = '😢';
+        feedbackIcon.innerHTML = '<svg class="icon-svg-xl cross-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
         feedbackText.textContent = 'Salah!';
         feedbackScore.textContent = '+0 poin';
         feedbackScore.style.color = 'var(--wrong)';
@@ -2555,11 +2662,11 @@ function showParticipantFinal(data) {
     document.getElementById('pfinal-score').textContent = `${myScore.toLocaleString()} poin`;
 
     let message = '';
-    if (myRank === 1) message = 'Luar Biasa! Kamu Juara! 🏆';
-    else if (myRank === 2) message = 'Hebat! Runner Up! 🥈';
-    else if (myRank === 3) message = 'Keren! Top 3! 🥉';
-    else if (myRank <= 5) message = 'Bagus! Top 5! 💪';
-    else message = 'Terima kasih sudah bermain! 🙌';
+    if (myRank === 1) message = 'Luar Biasa! Kamu Juara!';
+    else if (myRank === 2) message = 'Hebat! Runner Up!';
+    else if (myRank === 3) message = 'Keren! Top 3!';
+    else if (myRank <= 5) message = 'Bagus! Top 5!';
+    else message = 'Terima kasih sudah bermain!';
 
     document.getElementById('pfinal-message').textContent = message;
 
