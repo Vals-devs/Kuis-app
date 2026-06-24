@@ -2112,88 +2112,45 @@ async function hostEndQuiz() {
 function generateCSVData(separator = ',') {
     const participants = state.participants;
     const allAnswers = state.allAnswers || {};
-    const labels = ['A', 'B', 'C', 'D'];
 
-    // Build header row
-    let headers = ['Ranking', 'Nama', 'Total Skor', 'Jumlah Benar', 'Jumlah Salah', 'Tidak Dijawab', 'Akurasi (%)'];
-    for (let q = 0; q < QUESTIONS.length; q++) {
-        headers.push(`Soal ${q + 1} - Jawaban`);
-        headers.push(`Soal ${q + 1} - Hasil`);
-        headers.push(`Soal ${q + 1} - Waktu (detik)`);
-        headers.push(`Soal ${q + 1} - Poin`);
-    }
+    // Build header row with exactly the 6 requested columns
+    let headers = ['Ranking', 'Nama', 'Total Skor', 'Jumlah Benar', 'Jumlah Salah', 'Tidak Dijawab'];
 
-    // Build leaderboard sorted
+    // Build leaderboard sorted by score desc
     const sorted = Object.entries(participants)
         .map(([id, p]) => ({ id, name: p.name, score: p.score || 0 }))
         .sort((a, b) => b.score - a.score);
 
-    // Build CSV rows
+    // Build rows
     const rows = [headers];
 
     sorted.forEach((entry, rank) => {
         let correctCount = 0;
         let wrongCount = 0;
         let unanswered = 0;
-        const row = [rank + 1, entry.name, entry.score];
-        const questionDetails = [];
 
         for (let q = 0; q < QUESTIONS.length; q++) {
             const qAnswers = allAnswers[q] || {};
             const pAnswer = qAnswers[entry.id];
 
             if (pAnswer) {
-                const answerLabel = labels[pAnswer.answer] || '-';
-                const isCorrect = pAnswer.correct;
-                const timeSec = (pAnswer.timeMs / 1000).toFixed(1);
-                const points = isCorrect ? Math.max(100, Math.round(1000 * (1 - pAnswer.timeMs / (TIMER_DURATION * 1000)))) : 0;
-
-                questionDetails.push(answerLabel);
-                questionDetails.push(isCorrect ? 'Benar' : 'Salah');
-                questionDetails.push(timeSec);
-                questionDetails.push(points);
-
-                if (isCorrect) correctCount++;
+                if (pAnswer.correct) correctCount++;
                 else wrongCount++;
             } else {
-                questionDetails.push('-');
-                questionDetails.push('Tidak Dijawab');
-                questionDetails.push('-');
-                questionDetails.push(0);
                 unanswered++;
             }
         }
 
-        const accuracy = QUESTIONS.length > 0 ? Math.round((correctCount / QUESTIONS.length) * 100) : 0;
-        row.push(correctCount, wrongCount, unanswered, accuracy);
-        row.push(...questionDetails);
+        const row = [
+            rank + 1,
+            entry.name,
+            entry.score,
+            correctCount,
+            wrongCount,
+            unanswered
+        ];
         rows.push(row);
     });
-
-    // Add summary section
-    rows.push([]);
-    rows.push(['=== RINGKASAN SOAL ===']);
-    rows.push(['No Soal', 'Pertanyaan', 'Jawaban Benar', 'Jumlah Benar', 'Jumlah Salah', 'Tidak Dijawab']);
-
-    for (let q = 0; q < QUESTIONS.length; q++) {
-        const qData = QUESTIONS[q];
-        const qAnswers = allAnswers[q] || {};
-        let correct = 0, wrong = 0, none = 0;
-
-        Object.keys(participants).forEach(pid => {
-            const a = qAnswers[pid];
-            if (!a) none++;
-            else if (a.correct) correct++;
-            else wrong++;
-        });
-
-        rows.push([
-            q + 1,
-            `"${qData.question.replace(/"/g, '""')}"`,
-            labels[qData.correct],
-            correct, wrong, none
-        ]);
-    }
 
     return rows.map(r => r.map(cell => {
         const str = String(cell);
